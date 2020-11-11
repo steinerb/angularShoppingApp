@@ -37,7 +37,7 @@ MongoClient.connect(uri, {useUnifiedTopology: true}, function(error, result){
 	console.log("\nCollection reached! \nCollection info:\t", collection, "\n");
 });
 
-/*
+
 app.post('/admin/addproduct', (req, res) => {
 	let data = req.body;
 	collection.insertOne(data).then(result => {
@@ -45,7 +45,7 @@ app.post('/admin/addproduct', (req, res) => {
 		res.send('product added successfully');
 	});
 })
-*/
+
 
 
 app.listen(PORT, () => {

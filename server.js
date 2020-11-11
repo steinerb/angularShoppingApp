@@ -1,5 +1,9 @@
 var express = require('express');
 var bp = require('body-parser');
+var app = express();
+app.use(bp.json());
+app.use(bp.urlencoded({extended:true}));
+var http = require('http').Server(app);
 
 const MongoClient = require('mongodb').MongoClient;
 
@@ -18,10 +22,6 @@ const uri = `mongodb+srv://${userName}:${password}@${clusterName}.${clusterInfo}
 var collection;
 var client;
 
-var app = express();
-
-app.use(bp.json());
-app.use(bp.urlencoded({extended:true}));
 
 
 //db connection
@@ -32,6 +32,16 @@ MongoClient.connect(uri, {useUnifiedTopology: true}, function(error, result){
 	//also works:
 		//collection = result.db('tcsdb').collection('students');
 	collection = client.collection(collectionName);
-	console.log("\n\nCollection reached! \nCollection info:\t", collection);
+	console.log("\nCollection reached! \nCollection info:\t", collection);
 });
 
+/*
+app.post('/admin/addproduct', (req, res) => {
+	let data = req.body;
+	collection.insertOne(data).then(result => {
+		console.log(result);
+	})
+});
+
+
+*/

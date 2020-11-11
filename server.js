@@ -5,6 +5,8 @@ app.use(bp.json());
 app.use(bp.urlencoded({extended:true}));
 var http = require('http').Server(app);
 
+const PORT = 3000;
+
 const MongoClient = require('mongodb').MongoClient;
 
 //db specifications
@@ -32,7 +34,7 @@ MongoClient.connect(uri, {useUnifiedTopology: true}, function(error, result){
 	//also works:
 		//collection = result.db('tcsdb').collection('students');
 	collection = client.collection(collectionName);
-	console.log("\nCollection reached! \nCollection info:\t", collection);
+	console.log("\nCollection reached! \nCollection info:\t", collection, "\n");
 });
 
 /*
@@ -40,8 +42,12 @@ app.post('/admin/addproduct', (req, res) => {
 	let data = req.body;
 	collection.insertOne(data).then(result => {
 		console.log(result);
-	})
-});
-
-
+		res.send('product added successfully');
+	});
+})
 */
+
+
+app.listen(PORT, () => {
+	console.log('server is ready');
+})

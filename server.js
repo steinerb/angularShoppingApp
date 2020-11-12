@@ -48,7 +48,7 @@ app.post('/admin/products', (req, res) => {
 })
 
 //sign up
-app.post('/signup/users', (req, res) => {
+app.post('/sign-up/users', (req, res) => {
 	let data = req.body;
 	userCollection.insertOne(data).then(result => {
 		console.log(result);

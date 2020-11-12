@@ -20,32 +20,24 @@ const clusterInfo = 'm2uu4';
 
 const uri = `mongodb+srv://${userName}:${password}@${clusterName}.${clusterInfo}.mongodb.net/${dbName}?retryWrites=true&w=majority`;
 
+var client;
+var database;
 var productCollection;
 var userCollection;
-var client;
-
 
 
 //db connection
 MongoClient.connect(uri, {useUnifiedTopology: true}, function(error, result){
 	client = result.db(dbName);	
-	console.log("Database connected! \nDB info:\t", client);
+	database = result.db();
+	console.log("Database connected! \nDB info:\t", database);
 
 	//also works:
 		//collection = result.db('tcsdb').collection('students');
 	productCollection = client.collection("products");
 	userCollection = client.collection("users");
-	console.log("\nCollection reached!\n");
+	console.log("\nCollections reached!\n");
 });
-
-
-app.post('/admin/products', (req, res) => {
-	let data = req.body;
-	productCollection.insertOne(data).then(result => {
-		console.log(result);
-		res.send('product added successfully');
-	});
-})
 
 //sign up
 app.post('/sign-up/users', (req, res) => {
@@ -55,6 +47,38 @@ app.post('/sign-up/users', (req, res) => {
 		res.send('user added successfully');
 	});
 })
+
+//
+app.get('/finduser', (req, res) => {
+	userCollection.findOne({email: "bri@bri.com"}, function(error, user) {
+		if(error) throw error;
+
+		if(user)
+		{
+			console.log("user found! info:");
+			Object.values(user).forEach((prop)=> console.log(prop));
+			res.json(user);
+		}
+		else
+		{
+			console.log("no users found.")
+			res.send({});
+		}
+
+	})
+})
+
+//admin tools
+//add product
+app.post('/admin/products', (req, res) => {
+	let data = req.body;
+	productCollection.insertOne(data).then(result => {
+		console.log(result);
+		res.send('product added successfully');
+	});
+})
+
+
 
 
 

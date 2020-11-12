@@ -11,7 +11,15 @@
 		<input type="password" name="pass" formControlName="pass" /> 
 	</div>
 
-	<button type="submit" (click)="printFormInfo()
-">Login</button>
+
+	<!--TO ADD: dynamically set href-->
+	<a type="sumbit" (click)="doSomething()" href="/admin">Login</a>
+	<!--<button type="submit" (click)="printFormInfo()">Login</button>-->
 
 </form>
+
+
+
+<div>
+	<p>email: {{email.value}}</p>
+</div>

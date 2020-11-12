@@ -18,10 +18,14 @@ export class LoginComponent implements OnInit
  	email: FormControl
  	pass: FormControl
 
+ 	isAdmin: boolean = false;
+
 	//services initialized here
+		//TO ADD: DB service
+			//will merely emit something for express to pick up?
 	constructor() { }
 
-	printFormInfo()
+	doSomething()
 	{
 		console.log(`email: ${this.email.value}\npass: ${this.pass.value}`)
 	

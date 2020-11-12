@@ -31,7 +31,15 @@ export class SignUpComponent implements OnInit
 
 	temp()
 	{
-		this.userService.getUser(this.signUpForm.value['email']);
+		this.userService.getUser(this.signUpForm.value['email']).then((result) => {
+			if (result === undefined)
+				this.error = true;
+			else
+			{
+				this.error = false;
+				console.log(result);
+			}
+		})
 	}
 
 	onSubmit() 
@@ -42,6 +50,27 @@ export class SignUpComponent implements OnInit
 		user['pass'] = this.signUpForm.value['pass'];
 		user['isAdmin'] = false;
 
+		this.userService.getUser(this.signUpForm.value['email']).then((result) => {
+
+			if(Object.keys(result).length === 0)
+			{
+				this.userService.signUp(user).then((result) => {
+					if (result === undefined)
+						this.error = true;
+					else
+					{
+						this.error = false;
+						this.createdUser.emit(result);
+					}
+				})
+			}
+			else
+			{
+				alert("A user with that email already exists!");
+			}
+		})
+
+		/*
 		this.userService.signUp(user).then((result) => {
 			if (result === undefined)
 				this.error = true;
@@ -52,6 +81,9 @@ export class SignUpComponent implements OnInit
 			}
 
 		})
+		*/
+
+		//console.log(this.userService.userExists(this.signUpForm.value['email']));
 	}
 
 	ngOnInit(): void {

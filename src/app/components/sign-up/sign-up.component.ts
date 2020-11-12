@@ -29,12 +29,20 @@ export class SignUpComponent implements OnInit
 		console.log("something!!!");
 	}
 
-	onSubmit() {
+	temp()
+	{
+		this.userService.getUser(this.signUpForm.value['email']);
+	}
+
+	onSubmit() 
+	{
+
 		let user = {};
 		user['email'] = this.signUpForm.value['email'];
 		user['pass'] = this.signUpForm.value['pass'];
 		user['isAdmin'] = false;
-		this.userService.signup(user).then((result) => {
+
+		this.userService.signUp(user).then((result) => {
 			if (result === undefined)
 				this.error = true;
 			else

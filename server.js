@@ -48,9 +48,10 @@ app.post('/sign-up/users', (req, res) => {
 	});
 })
 
-//
-app.get('/finduser', (req, res) => {
-	userCollection.findOne({email: "bri@bri.com"}, function(error, user) {
+//find user by email
+app.get('/finduser/:email', (req, res) => {
+	var email = req.params.email;
+	userCollection.findOne({email: email}, function(error, user) {
 		if(error) throw error;
 
 		if(user)

@@ -11,7 +11,6 @@ const MongoClient = require('mongodb').MongoClient;
 
 //db specifications
 const dbName = "angularShoppingAppDB";
-const collectionName = "products";
 
 const userName = "brian";
 const password = "brian123";
@@ -21,7 +20,8 @@ const clusterInfo = 'm2uu4';
 
 const uri = `mongodb+srv://${userName}:${password}@${clusterName}.${clusterInfo}.mongodb.net/${dbName}?retryWrites=true&w=majority`;
 
-var collection;
+var productCollection;
+var userCollection;
 var client;
 
 
@@ -33,14 +33,14 @@ MongoClient.connect(uri, {useUnifiedTopology: true}, function(error, result){
 
 	//also works:
 		//collection = result.db('tcsdb').collection('students');
-	collection = client.collection(collectionName);
-	console.log("\nCollection reached! \nCollection info:\t", collection, "\n");
+	productCollection = client.collection("products");
+	console.log("\nCollection reached! \nCollection info:\t", productCollection, "\n");
 });
 
 
-app.post('/admin/addproduct', (req, res) => {
+app.post('/admin/products', (req, res) => {
 	let data = req.body;
-	collection.insertOne(data).then(result => {
+	productCollection.insertOne(data).then(result => {
 		console.log(result);
 		res.send('product added successfully');
 	});

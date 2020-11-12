@@ -34,7 +34,8 @@ MongoClient.connect(uri, {useUnifiedTopology: true}, function(error, result){
 	//also works:
 		//collection = result.db('tcsdb').collection('students');
 	productCollection = client.collection("products");
-	console.log("\nCollection reached! \nCollection info:\t", productCollection, "\n");
+	userCollection = client.collection("users");
+	console.log("\nCollection reached!\n");
 });
 
 
@@ -43,6 +44,15 @@ app.post('/admin/products', (req, res) => {
 	productCollection.insertOne(data).then(result => {
 		console.log(result);
 		res.send('product added successfully');
+	});
+})
+
+//sign up
+app.post('/signup/users', (req, res) => {
+	let data = req.body;
+	userCollection.insertOne(data).then(result => {
+		console.log(result);
+		res.send('user added successfully');
 	});
 })
 

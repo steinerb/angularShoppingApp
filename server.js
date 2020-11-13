@@ -88,7 +88,7 @@ app.delete('/admin/products/:id', (req, res) => {
 	res.send('product deleted successfully');
 })
 	//update product
-app.put('/admin/products/:id/:attr/:val/',(req,res)=>{
+app.put('/admin/products/:id/:attr/:val',(req,res)=>{
     var data = req.body;
     var id = req.params.id;
     var attr = req.params.attr;
@@ -112,6 +112,18 @@ app.delete('/admin/users/:email', (req, res) => {
 	const email = req.params.email;
 	userCollection.deleteOne({email: email});
 	res.send('user deleted successfully');
+})
+//update user
+app.put('/admin/users/:email/:attr/:val',(req,res)=>{
+    var data = req.body;
+    var email = req.params.email;
+    var attr = req.params.attr;
+    var val = req.params.val;
+   
+    try {data[attr] = eval(val)} catch {data[attr] = String(val)};
+
+    userCollection.updateOne({email: email},{$set:data})
+    res.send('user is updated')
 })
 
 //user tools

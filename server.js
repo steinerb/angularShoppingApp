@@ -81,8 +81,8 @@ app.post('/admin/products', (req, res) => {
 })
 //delete product
 app.delete('/admin/products/:id', (req, res) => {
-	const data = req.params.id;
-	productCollection.deleteOne({_id: ObjectId(data)});
+	const id = req.params.id;
+	productCollection.deleteOne({_id: ObjectId(id)});
 	res.send('product deleted successfully');
 })
 
@@ -91,6 +91,14 @@ app.delete('/admin/products/:id', (req, res) => {
 app.get('/user/products', (req, res) => {
 	productCollection.find().toArray().then(result => {
 		console.log('displaying products');
+		res.send(result);
+	})
+})
+//get product
+app.get('/user/products/:id', (req, res) => {
+	const id = req.params.id;
+	productCollection.findOne({_id: ObjectId(id)}).then(result => {
+		console.log('displaying product');
 		res.send(result);
 	})
 })

@@ -85,6 +85,18 @@ app.delete('/admin/products/:id', (req, res) => {
 	productCollection.deleteOne({_id: ObjectId(id)});
 	res.send('product deleted successfully');
 })
+//update product
+app.put('/admin/products/:id/:attr/:val/',(req,res)=>{
+    var data = req.body;
+    var id = req.params.id;
+    var attr = req.params.attr;
+    var val = req.params.val;
+   
+    try {data[attr] = eval(val)} catch {data[attr] = String(val)};
+
+    productCollection.updateOne({_id: ObjectId(id)},{$set:data})
+    res.send('product is updated')
+})
 
 //user tools
 //get products

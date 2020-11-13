@@ -49,6 +49,7 @@ export class SignUpComponent implements OnInit
 		user['email'] = this.signUpForm.value['email'];
 		user['pass'] = this.signUpForm.value['pass'];
 		user['isAdmin'] = false;
+		user['wishlist'] = [];
 
 		this.userService.getUser(this.signUpForm.value['email']).then((result) => {
 

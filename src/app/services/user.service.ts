@@ -26,6 +26,16 @@ export class UserService
 		.catch(this.error);
 	}
 
+	userExists(email)
+	{
+		return this.getUser(email).then((result) => {
+			if(Object.keys(result).length === 0)
+				return false;
+			else
+				return true;
+		})
+	}
+
 
 	// Error handling
     private error(error: any) {

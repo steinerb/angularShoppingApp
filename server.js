@@ -8,6 +8,7 @@ var http = require('http').Server(app);
 const PORT = 3000;
 
 const MongoClient = require('mongodb').MongoClient;
+var ObjectId = require('mongodb').ObjectID;
 
 //db specifications
 const dbName = "angularShoppingAppDB";
@@ -78,10 +79,21 @@ app.post('/admin/products', (req, res) => {
 		res.send('product added successfully');
 	});
 })
+//delete product
+app.delete('/admin/products/:id', (req, res) => {
+	const data = req.params.id;
+	productCollection.deleteOne({_id: ObjectId(data)});
+	res.send('product deleted successfully');
+})
 
-
-
-
+//user tools
+//get products
+app.get('/user/products', (req, res) => {
+	productCollection.find().toArray().then(result => {
+		console.log('displaying products');
+		res.send(result);
+	})
+})
 
 app.listen(PORT, () => {
 	console.log('server is ready');

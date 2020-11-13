@@ -40,7 +40,9 @@ MongoClient.connect(uri, {useUnifiedTopology: true}, function(error, result){
 	console.log("\nCollections reached!\n");
 });
 
-//sign up
+
+//guest tools
+	//sign up
 app.post('/sign-up/users', (req, res) => {
 	let data = req.body;
 	userCollection.insertOne(data).then(result => {
@@ -49,7 +51,7 @@ app.post('/sign-up/users', (req, res) => {
 	});
 })
 
-//find user by email
+	//find user by email
 app.get('/finduser/:email', (req, res) => {
 	var email = req.params.email;
 	userCollection.findOne({email: email}, function(error, user) {
@@ -71,7 +73,7 @@ app.get('/finduser/:email', (req, res) => {
 })
 
 //admin tools
-//add product
+	//add product
 app.post('/admin/products', (req, res) => {
 	let data = req.body;
 	productCollection.insertOne(data).then(result => {
@@ -79,13 +81,13 @@ app.post('/admin/products', (req, res) => {
 		res.send('product added successfully');
 	});
 })
-//delete product
+	//delete product
 app.delete('/admin/products/:id', (req, res) => {
 	const id = req.params.id;
 	productCollection.deleteOne({_id: ObjectId(id)});
 	res.send('product deleted successfully');
 })
-//update product
+	//update product
 app.put('/admin/products/:id/:attr/:val/',(req,res)=>{
     var data = req.body;
     var id = req.params.id;
@@ -97,16 +99,30 @@ app.put('/admin/products/:id/:attr/:val/',(req,res)=>{
     productCollection.updateOne({_id: ObjectId(id)},{$set:data})
     res.send('product is updated')
 })
+//add user
+app.post('/admin/users', (req, res) => {
+	let data = req.body;
+	userCollection.insertOne(data).then(result => {
+		console.log(result);
+		res.send('user added successfully');
+	});
+})
+//delete user
+app.delete('/admin/users/:email', (req, res) => {
+	const email = req.params.email;
+	userCollection.deleteOne({email: email});
+	res.send('user deleted successfully');
+})
 
 //user tools
-//get products
+	//get products
 app.get('/user/products', (req, res) => {
 	productCollection.find().toArray().then(result => {
 		console.log('displaying products');
 		res.send(result);
 	})
 })
-//get product
+	//get product
 app.get('/user/products/:id', (req, res) => {
 	const id = req.params.id;
 	productCollection.findOne({_id: ObjectId(id)}).then(result => {
@@ -114,6 +130,8 @@ app.get('/user/products/:id', (req, res) => {
 		res.send(result);
 	})
 })
+
+
 
 app.listen(PORT, () => {
 	console.log('server is ready');

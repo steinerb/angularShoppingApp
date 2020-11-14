@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-// add these when ready to emit:	 Output, EventEmitter
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -20,6 +20,8 @@ export class AddUserComponent implements OnInit
 
  	error: boolean = false;
 
+ 	@Output() createdUser = new EventEmitter<any>();
+
  	onSubmit()
  	{
  		let user = {};
@@ -27,8 +29,31 @@ export class AddUserComponent implements OnInit
 		user['pass'] = this.addUserForm.value['pass'];
 		user['isAdmin'] = this.addUserForm.value['isAdmin'];
 		user['wishlist'] = [];
+		//cart should be stored in local storage instead of db!!!
+		user['cart'] = [];
 
- 		console.log("new user:\n", user);
+ 		//get gets the user
+ 		this.userService.getUser(this.addUserForm.value['email']).then((result) => {
+			//if user is does not already exist
+			if(Object.keys(result).length === 0)
+			{
+				//add user
+				this.userService.addUser(user).then((result) => {
+					if (result === undefined)
+						this.error = true;
+					else
+					{
+						//emit to express http server
+						this.error = false;
+						this.createdUser.emit(result);
+					}
+				})
+			}
+			else
+			{
+				alert("A user with that email already exists!");
+			}
+		})
  	}
 
 	constructor(protected userService: UserService) { }

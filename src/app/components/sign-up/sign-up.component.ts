@@ -37,6 +37,9 @@ export class SignUpComponent implements OnInit
 		user['pass'] = this.signUpForm.value['pass'];
 		user['isAdmin'] = false;
 		user['wishlist'] = [];
+		//cart should be stored in local storage instead of db!!!
+		user['cart'] = [];
+		
 		//get gets the user
 		this.userService.getUser(this.signUpForm.value['email']).then((result) => {
 			//if user is does not already exist

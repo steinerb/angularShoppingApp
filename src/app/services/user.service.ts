@@ -19,13 +19,6 @@ export class UserService
 		.catch(this.error);
 	}
 
-	addUser(user): Promise<any>
-	{
-		return this.http.post(this.usersURL, user).toPromise()
-		.then(response => response.json())
-		.catch(this.error);
-	}
-
 	getUser(email)
 	{
 		return this.http.get(`${this.getUserURL}/${email}`).toPromise()
@@ -42,6 +35,22 @@ export class UserService
 				return true;
 		})
 	}
+
+	addUser(user): Promise<any>
+	{
+		return this.http.post(this.usersURL, user).toPromise()
+		.then(response => response.json())
+		.catch(this.error);
+	}
+
+    deleteUser(email: string): Promise<any> 
+    {
+        return this.http.delete(`${this.usersURL}/${email}`)
+            .toPromise()
+            .then(response => response.json())
+            .catch(this.error);
+    }
+
 
 
 	// Error handling

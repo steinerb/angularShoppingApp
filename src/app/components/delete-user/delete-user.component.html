@@ -1,3 +1,12 @@
-<p>delete-user works!</p>
+<h2>Delete User</h2>
 
-<br><a href="/admin">Back</a>
+<form [formGroup]="deleteUserForm" (ngSubmit)="onSubmit()">
+	<div>
+		<span>Email: </span>
+		<input type="email" name="email" formControlName="email" required/> 
+	</div>
+ 
+	
+	<button type="submit" [disabled]="!deleteUserForm.valid">Submit</button>
+
+</form>

@@ -5,13 +5,23 @@ import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { UserComponent } from './components/user/user.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
+
+
 
 const routes: Routes = [
 	{ path: '', pathMatch: 'full', redirectTo: 'login' },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'sign-up', component: SignUpComponent },
 	//TO ADD: children of admin
-	{ path: 'admin', component: AdminComponent },
+	{ path: 'admin', children:
+		[
+			{ path: '', component: AdminComponent},
+			{ path: 'add-user', component: AddUserComponent}
+			
+		]
+		
+	},
 	{ path: 'user', component: UserComponent }
 
 	//{ path: '**', pathMatch: 'full', redirectTo: 'login' }

@@ -1,1 +1,8 @@
 <p>admin works!</p>
+
+<div *ngIf="currentView == 'admin'">
+<ul>
+	<li><a (click)="changeView('add-user')" href="admin/add-user">
+	Add User</a></li>
+</ul>
+<div>

@@ -12,7 +12,7 @@ import { UserService } from '../../services/user.service';
 })
 export class AddUserComponent implements OnInit {
 
-  constructor() { }
+  constructor(protected userService: UserService) { }
 
   ngOnInit(): void {
   }

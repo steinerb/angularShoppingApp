@@ -1,0 +1,24 @@
+<h2>Update User</h2>
+
+<form [formGroup]="updateUserForm" (ngSubmit)="onSubmit()">
+	<div>
+		<span>Email of User: </span>
+		<input type="email" name="email" formControlName="email" required/> 
+	</div>
+
+	<div>
+		<span>Attribute to Change: </span>
+		<input type="text" name="attr" formControlName="attr" required/> 
+	</div>
+
+	<div>
+		<span>New Attribute Value: </span>
+		<input type="text" name="val" formControlName="val" required/> 
+	</div>
+ 
+	
+	<button type="submit" [disabled]="!updateUserForm.valid">Submit</button>
+
+</form>
+
+<br><a href="/admin">Back</a>

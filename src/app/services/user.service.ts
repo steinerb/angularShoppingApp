@@ -50,7 +50,14 @@ export class UserService
             .then(response => response.json())
             .catch(this.error);
     }
-
+    
+    updateUser(email: string, attr: string, val:any): Promise<any>
+    {
+    	return this.http.put(`${this.usersURL}/${email}/${attr}/${val}`, '').toPromise()
+            .then(response => response.json())
+            .catch(this.error);
+    }
+	
 
 
 	// Error handling

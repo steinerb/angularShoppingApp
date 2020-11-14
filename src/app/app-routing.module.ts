@@ -7,6 +7,7 @@ import { UserComponent } from './components/user/user.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { DeleteUserComponent } from './components/delete-user/delete-user.component';
+import { UpdateUserComponent } from './components/update-user/update-user.component';
 
 
 
@@ -19,8 +20,8 @@ const routes: Routes = [
 		[
 			{ path: '', component: AdminComponent},
 			{ path: 'add-user', component: AddUserComponent},
-			{ path: 'delete-user', component: DeleteUserComponent}
-			
+			{ path: 'delete-user', component: DeleteUserComponent},
+			{ path: 'update-user', component: UpdateUserComponent}
 		]
 		
 	},

@@ -13,6 +13,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { UserComponent } from './components/user/user.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
+import { DeleteUserComponent } from './components/delete-user/delete-user.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AddUserComponent } from './components/add-user/add-user.component';
     AdminComponent,
     UserComponent,
     SignUpComponent,
-    AddUserComponent
+    AddUserComponent,
+    DeleteUserComponent
   ],
   imports: [
     BrowserModule,

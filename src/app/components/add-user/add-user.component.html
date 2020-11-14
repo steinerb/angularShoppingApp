@@ -1,4 +1,27 @@
-<p>add-user works!</p>
+<h2>Add User</h2>
+
+<form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+	<div>
+		<span>Email: </span>
+		<input type="email" name="email" formControlName="email" required/> 
+	</div>
+
+	<div>
+		<span>Password: </span>
+		<input type="password" name="pass" formControlName="pass" required/> 
+	</div>
+
+	<div>
+		<input type="radio" id="admin" name="isAdmin" value="true" formControlName="isAdmin">
+		<label for="admin">Admin</label><br>
+		<input type="radio" id="user" name="isAdmin" value="false" formControlName="isAdmin" checked>
+		<label for="user">User</label><br>
+	</div>
+ 
+	
+	<button type="submit" [disabled]="!addUserForm.valid">Submit</button>
+
+</form>
 
 
 <a href="/admin">Back</a>

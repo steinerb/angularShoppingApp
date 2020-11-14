@@ -29,19 +29,6 @@ export class SignUpComponent implements OnInit
 		console.log("something!!!");
 	}
 
-	temp()
-	{
-		this.userService.getUser(this.signUpForm.value['email']).then((result) => {
-			if (result === undefined)
-				this.error = true;
-			else
-			{
-				this.error = false;
-				console.log(result);
-			}
-		})
-	}
-
 	onSubmit() 
 	{
 
@@ -73,20 +60,6 @@ export class SignUpComponent implements OnInit
 			}
 		})
 
-		/*
-		this.userService.signUp(user).then((result) => {
-			if (result === undefined)
-				this.error = true;
-			else
-			{
-				this.error = false;
-				this.createdUser.emit(result);
-			}
-
-		})
-		*/
-
-		//console.log(this.userService.userExists(this.signUpForm.value['email']));
 	}
 
 	ngOnInit(): void {
@@ -97,6 +70,6 @@ export class SignUpComponent implements OnInit
 			email: this.email,
 			pass: this.pass
 		})
-  }
+	}
 
 }

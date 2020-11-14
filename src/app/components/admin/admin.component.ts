@@ -8,14 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
-	currentView: string = "admin";
+	
 
  	constructor() { }
 
- 	changeView(newView: string)
- 	{
- 		this.currentView = newView;
- 	}
 
 	ngOnInit(): void {
 	}

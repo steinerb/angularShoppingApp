@@ -99,7 +99,7 @@ app.put('/admin/products/:id/:attr/:val',(req,res)=>{
     productCollection.updateOne({_id: ObjectId(id)},{$set:data})
     res.send('product is updated')
 })
-//add user
+	//add user
 app.post('/admin/users', (req, res) => {
 	let data = req.body;
 	userCollection.insertOne(data).then(result => {
@@ -107,13 +107,13 @@ app.post('/admin/users', (req, res) => {
 		res.send('user added successfully');
 	});
 })
-//delete user
+	//delete user
 app.delete('/admin/users/:email', (req, res) => {
 	const email = req.params.email;
 	userCollection.deleteOne({email: email});
 	res.send('user deleted successfully');
 })
-//update user
+	//update user
 app.put('/admin/users/:email/:attr/:val',(req,res)=>{
     var data = req.body;
     var email = req.params.email;

@@ -50,16 +50,18 @@ export class SignUpComponent implements OnInit
 		user['pass'] = this.signUpForm.value['pass'];
 		user['isAdmin'] = false;
 		user['wishlist'] = [];
-
+		//get gets the user
 		this.userService.getUser(this.signUpForm.value['email']).then((result) => {
-
+			//if user is does not already exist
 			if(Object.keys(result).length === 0)
 			{
+				//sign up user
 				this.userService.signUp(user).then((result) => {
 					if (result === undefined)
 						this.error = true;
 					else
 					{
+						//emit to express http server
 						this.error = false;
 						this.createdUser.emit(result);
 					}

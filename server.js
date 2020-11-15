@@ -82,12 +82,14 @@ app.post('/admin/products', (req, res) => {
 	});
 })
 	//delete product
-app.delete('/admin/products/:id', (req, res) => {
-	const id = req.params.id;
-	productCollection.deleteOne({_id: ObjectId(id)});
+app.delete('/admin/products/:name/:brand', (req, res) => {
+	const name = req.params.name;
+	const brand = req.params.brand;
+	productCollection.deleteOne({name: name, brand: brand});
 	res.send('product deleted successfully');
 })
 	//update product
+	//FIX!!!!!!!!
 app.put('/admin/products/:id/:attr/:val',(req,res)=>{
     var data = req.body;
     var id = req.params.id;

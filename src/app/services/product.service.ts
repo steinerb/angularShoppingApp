@@ -28,6 +28,21 @@ export class ProductService
 		.catch(this.error);
 	}
 
+	deleteProduct(name:string, brand:string): Promise<any> 
+    {
+        return this.http.delete(`${this.productsURL}/${name}/${brand}`)
+            .toPromise()
+            .then(response => response.json())
+            .catch(this.error);
+    }
+
+    updateProduct(name: string, brand:string, attr: string, val:any): Promise<any>
+    {
+    	return this.http.put(`${this.productsURL}/${name}/${brand}/${attr}/${val}`, '').toPromise()
+            .then(response => response.json())
+            .catch(this.error);
+    }
+
 	// Error handling
     private error(error: any) {
         let message = (error.message) ? error.message :

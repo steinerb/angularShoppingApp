@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -19,8 +19,6 @@ export class DeleteUserComponent implements OnInit
 
  	error: boolean = false;
 
- 	@Output() emailToDelete = new EventEmitter<any>();
-
 	constructor(protected userService: UserService) { }
 
 	onSubmit()
@@ -39,11 +37,8 @@ export class DeleteUserComponent implements OnInit
 						if (result === undefined)
 							this.error = true;
 						else
-						{
-							//emit to express http server
 							this.error = false;
-							this.emailToDelete.emit(email);
-						}
+						
 					})
 				}
 				else

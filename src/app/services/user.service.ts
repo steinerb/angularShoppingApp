@@ -57,7 +57,6 @@ export class UserService
             .then(response => response.json())
             .catch(this.error);
     }
-	
 
 
 	// Error handling

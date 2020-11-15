@@ -9,6 +9,7 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import { DeleteUserComponent } from './components/delete-user/delete-user.component';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 
+import { AddProductComponent } from './components/add-product/add-product.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
 			{ path: '', component: AdminComponent},
 			{ path: 'add-user', component: AddUserComponent},
 			{ path: 'delete-user', component: DeleteUserComponent},
-			{ path: 'update-user', component: UpdateUserComponent}
+			{ path: 'update-user', component: UpdateUserComponent},
+			{ path: 'add-product', component: AddProductComponent}
 		]
 		
 	},

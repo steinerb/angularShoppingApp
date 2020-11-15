@@ -8,10 +8,20 @@ import { Http } from '@angular/http';
 export class ProductService 
 {
 	private productsURL = '/admin/products';
+	private getProductURL = '/user/products';
+
 
 	constructor(private http: Http) { }
 
-	create(product): Promise<any>
+
+	getProduct(name, brand)
+	{
+		return this.http.get(`${this.getProductURL}/${name}/${brand}`).toPromise()
+		.then(response => response.json())
+		.catch(this.error);
+	}
+
+	addProduct(product): Promise<any>
 	{
 		return this.http.post(this.productsURL, product).toPromise()
 		.then(response => response.json())

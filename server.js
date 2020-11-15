@@ -135,11 +135,25 @@ app.get('/user/products', (req, res) => {
 	})
 })
 	//get product
-app.get('/user/products/:id', (req, res) => {
-	const id = req.params.id;
-	productCollection.findOne({_id: ObjectId(id)}).then(result => {
-		console.log('displaying product');
-		res.send(result);
+app.get('/user/products/:name/:brand', (req, res) => {
+
+	const name = req.params.name;
+	const brand = req.params.brand;
+
+	productCollection.findOne({name: name, brand: brand}, function(error, product) {
+		if(error) throw error;
+
+		if(product)
+		{
+			console.log("product found! info:");
+			Object.values(product).forEach((prop)=> console.log(prop));
+			res.json(product);
+		}
+		else
+		{
+			console.log("no products found.")
+			res.send({});
+		}
 	})
 })
 

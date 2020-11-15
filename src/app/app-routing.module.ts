@@ -13,6 +13,7 @@ import { UpdateUserComponent } from './components/update-user/update-user.compon
 
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { DeleteProductComponent } from './components/delete-product/delete-product.component';
+import { UpdateProductComponent } from './components/update-product/update-product.component';
 
 
 
@@ -20,7 +21,6 @@ const routes: Routes = [
 	{ path: '', pathMatch: 'full', redirectTo: 'login' },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'sign-up', component: SignUpComponent },
-	//TO ADD: children of admin
 	{ path: 'admin', children:
 		[
 			{ path: '', component: AdminComponent},
@@ -28,13 +28,12 @@ const routes: Routes = [
 			{ path: 'delete-user', component: DeleteUserComponent},
 			{ path: 'update-user', component: UpdateUserComponent},
 			{ path: 'add-product', component: AddProductComponent},
-			{ path: 'delete-product', component: DeleteProductComponent}
+			{ path: 'delete-product', component: DeleteProductComponent},
+			{ path: 'update-product', component: UpdateProductComponent}
 		]
 		
 	},
 	{ path: 'user', component: UserComponent }
-
-	//{ path: '**', pathMatch: 'full', redirectTo: 'login' }
 ];
 
 @NgModule({

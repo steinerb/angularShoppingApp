@@ -81,6 +81,7 @@ app.post('/admin/products', (req, res) => {
 		res.send('product added successfully');
 	});
 })
+
 	//delete product
 app.delete('/admin/products/:name/:brand', (req, res) => {
 	const name = req.params.name;
@@ -88,19 +89,21 @@ app.delete('/admin/products/:name/:brand', (req, res) => {
 	productCollection.deleteOne({name: name, brand: brand});
 	res.send('product deleted successfully');
 })
+
 	//update product
-	//FIX!!!!!!!!
-app.put('/admin/products/:id/:attr/:val',(req,res)=>{
+app.put('/admin/products/:name/:brand/:attr/:val',(req,res)=>{
     var data = req.body;
-    var id = req.params.id;
+    var name = req.params.name;
+    var brand = req.params.brand;
     var attr = req.params.attr;
     var val = req.params.val;
    
     try {data[attr] = eval(val)} catch {data[attr] = String(val)};
 
-    productCollection.updateOne({_id: ObjectId(id)},{$set:data})
+    productCollection.updateOne({name: name, brand: brand},{$set:data})
     res.send('product is updated')
 })
+
 	//add user
 app.post('/admin/users', (req, res) => {
 	let data = req.body;
@@ -109,12 +112,14 @@ app.post('/admin/users', (req, res) => {
 		res.send('user added successfully');
 	});
 })
+
 	//delete user
 app.delete('/admin/users/:email', (req, res) => {
 	const email = req.params.email;
 	userCollection.deleteOne({email: email});
 	res.send('user deleted successfully');
 })
+
 	//update user
 app.put('/admin/users/:email/:attr/:val',(req,res)=>{
     var data = req.body;
@@ -129,13 +134,14 @@ app.put('/admin/users/:email/:attr/:val',(req,res)=>{
 })
 
 //user tools
-	//get products
+	//get all products
 app.get('/user/products', (req, res) => {
 	productCollection.find().toArray().then(result => {
 		console.log('displaying products');
 		res.send(result);
 	})
 })
+
 	//get product
 app.get('/user/products/:name/:brand', (req, res) => {
 

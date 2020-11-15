@@ -1,0 +1,29 @@
+<h2>Update Product</h2>
+
+<form [formGroup]="updateProductForm" (ngSubmit)="onSubmit()">
+	<div>
+		<span>Name of Product: </span>
+		<input type="text" name="name" formControlName="name" required/> 
+	</div>
+
+	<div>
+		<span>Product Brand: </span>
+		<input type="text" name="brand" formControlName="brand" required/> 
+	</div>
+
+	<div>
+		<span>Attribute to Change: </span>
+		<input type="text" name="attr" formControlName="attr" required/> 
+	</div>
+
+	<div>
+		<span>New Attribute Value: </span>
+		<input type="text" name="val" formControlName="val" required/> 
+	</div>
+ 
+	
+	<button type="submit" [disabled]="!updateProductForm.valid">Submit</button>
+
+</form>
+
+<br><a href="/admin">Back</a>

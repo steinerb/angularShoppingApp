@@ -2,6 +2,16 @@
 
 <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
 	<div>
+		<span>First Name: </span>
+		<input type="text" name="fName" formControlName="fName" required/> 
+	</div>
+
+	<div>
+		<span>Last Name: </span>
+		<input type="text" name="lName" formControlName="lName" required/> 
+	</div>
+	
+	<div>
 		<span>Email: </span>
 		<input type="email" name="email" formControlName="email" required/> 
 	</div>

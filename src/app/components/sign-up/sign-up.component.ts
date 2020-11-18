@@ -16,6 +16,8 @@ export class SignUpComponent implements OnInit
 	signUpForm: FormGroup
 
  	email: FormControl
+ 	fName: FormControl
+ 	lName: FormControl
  	pass: FormControl
 
  	error: boolean = false;
@@ -34,6 +36,8 @@ export class SignUpComponent implements OnInit
 
 		let user = {};
 		user['email'] = this.signUpForm.value['email'];
+		user['fName'] = this.signUpForm.value['fName'];
+		user['lName'] = this.signUpForm.value['lName'];
 		user['pass'] = this.signUpForm.value['pass'];
 		user['isAdmin'] = false;
 		user['wishlist'] = [];
@@ -67,10 +71,14 @@ export class SignUpComponent implements OnInit
 
 	ngOnInit(): void {
 	  	this.email = new FormControl('', Validators.required);
+	  	this.fName = new FormControl('', Validators.required);
+	  	this.lName = new FormControl('', Validators.required);
 		this.pass = new FormControl('', Validators.required);
 
 		this.signUpForm = new FormGroup({
 			email: this.email,
+			fName: this.fName,
+			lName: this.lName,
 			pass: this.pass
 		})
 	}

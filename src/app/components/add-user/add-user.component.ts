@@ -15,6 +15,8 @@ export class AddUserComponent implements OnInit
 	addUserForm: FormGroup
 
  	email: FormControl
+ 	fName: FormControl
+ 	lName: FormControl
  	pass: FormControl
  	isAdmin: FormControl
 
@@ -26,6 +28,8 @@ export class AddUserComponent implements OnInit
  	{
  		let user = {};
 		user['email'] = this.addUserForm.value['email'];
+		user['fName'] = this.addUserForm.value['fName'];
+		user['lName'] = this.addUserForm.value['lName'];
 		user['pass'] = this.addUserForm.value['pass'];
 		user['isAdmin'] = this.addUserForm.value['isAdmin'];
 		user['wishlist'] = [];
@@ -60,11 +64,15 @@ export class AddUserComponent implements OnInit
 
 	ngOnInit(): void {
 		this.email = new FormControl('', Validators.required);
+		this.fName = new FormControl('', Validators.required);
+	  	this.lName = new FormControl('', Validators.required);
 		this.pass = new FormControl('', Validators.required);
 		this.isAdmin = new FormControl(false, Validators.required);
 
 		this.addUserForm = new FormGroup({
 			email: this.email,
+			fName: this.fName,
+			lName: this.lName,
 			pass: this.pass,
 			isAdmin: this.isAdmin
 		})
